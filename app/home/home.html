@@ -1,0 +1,75 @@
+<md-content class="main" layout="column">
+    <div flex="100" layout-gt-md="row" layout-md="column" layout-lt-md="column">
+        <div flex-gt-md="20" flex layout="column" layout-align="start center">
+            <div flex="5"></div>
+            <div class="form-content" layout-align="center center">
+                <md-card layout-padding>
+                    <h2 md-colors="blue" layout="row" layout-align="center center"> Become a donor!</h2>
+                    <div layout="row" layout-align="center center">
+                        <form name="donorForm" ng-submit="addDonor(donorForm)">
+                            <div layout="row">
+                                <md-input-container class="md-block" >
+                                    <label>First name</label>
+                                    <input name="firstName" ng-model="donor.firstName" required>
+                                    <div ng-messages="donorForm.firstName.$error" role="alert">
+                                        <div ng-message="required" class="my-message">First name is required.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container class="md-block" >
+                                    <label>Last name</label>
+                                    <input ng-model="donor.lastName"  required>
+                                    <div ng-messages="donorForm.lastName.$error" role="alert">
+                                        <div ng-message="required" class="my-message">Last name is required.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <md-input-container class="md-block">
+                                <label>Amount</label>
+                                <input type="number" name="amount" ng-model="donor.amount" min="10" required>
+                                <div ng-messages="donorForm.amount.$error" role="alert">
+                                    <div ng-message="required" class="my-message">Amount is required.</div>
+                                    <div ng-message="min">You should donate at least 10 bucks</div>
+                                </div>
+                            </md-input-container>
+                            <div layout="row" >
+                                <md-input-container class="md-block" >
+                                    <label>City</label>
+                                    <input name="city" ng-model="donor.city" required>
+                                    <div ng-messages="donorForm.city.$error" role="alert">
+                                        <div ng-message="required" class="my-message">City is required.</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="md-block" >
+                                    <label>Postal Code</label>
+                                    <input name="postalCode" ng-model="donor.postalCode" placeholder="12345" required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+
+                                    <div ng-messages="donorForm.postalCode.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">Postal code is required.</div>
+                                        <div ng-message="pattern" class="my-message">Invalid postal code</div>
+                                        <div ng-message="md-maxlength" class="my-message">Invalid postal code</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout="row" layout-align="center center" >
+                                <md-button type="submit" class="md-raised md-primary">Submit</md-button>
+                            </div>
+                        </form>
+                    </div>
+                </md-card>
+            </div>
+        </div>
+        <md-content flex-gt-md="80" flex class="list-content" layout="column">
+            <div class="header">
+                <h1 md-colors="blue" layout="row" layout-align="center center"> Donors are heros!</h1>
+            </div>
+            <div layout="row" layout-align="center start"  layout-wrap>
+                <donor-profile layout-margin
+                               class="donor-profile"
+                               ng-repeat="donor in donorsList track by $index"
+                               donor="donor">
+                </donor-profile>
+            </div>
+        </md-content>
+    </div>
+</md-content>

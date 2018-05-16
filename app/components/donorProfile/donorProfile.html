@@ -1,0 +1,15 @@
+<md-card class="donor-profile">
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline" layout="row">{{donor.fullName | limitTo:25}}</span>
+            <span class="md-headline">{{donor.amount | currency | limitTo:20}}</span>
+            <span class="md-subhead">{{donor.city  | limitTo:25}}</span>
+            <span class="md-subhead">{{donor.postalCode  | limitTo:25}}</span>
+        </md-card-title-text>
+        <md-card-title-media>
+            <div layout="row" layout-align="center center" class="dummy-image">
+                <span>{{donor.short}}</span>
+            </div>
+        </md-card-title-media>
+    </md-card-title>
+</md-card>
